@@ -309,7 +309,7 @@ This generates all `.pkl` files, `.json` metadata, and confusion matrix images i
 python3 -m streamlit run app/app.py
 ```
 
-Open your browser at: `http://localhost:8501`
+Open your browser at: `https://examora.streamlit.app/`
 
 ---
 
