@@ -1,0 +1,32 @@
+Best Practices in Exam Question Design
+
+1. Clarity and Precision
+Questions should be written in clear, unambiguous language. Avoid double negatives, complex sentence structures, and jargon that may confuse students. Each question should test one specific concept.
+
+2. Alignment with Learning Outcomes
+Every question must align with a specific course learning outcome. Questions that do not map to any learning outcome should be revised or removed.
+
+3. Discrimination Index
+The discrimination index measures how well a question differentiates between high and low performing students.
+- Index > 0.3: Good question, effectively discriminates
+- Index 0.1–0.3: Needs improvement
+- Index < 0.1: Poor question, should be revised or removed
+- Negative index: Question may be misleading or flawed
+
+4. Question Types
+- MCQ: Best for testing recall and understanding. Distractors should be plausible.
+- Short Answer: Tests ability to recall and explain concepts concisely.
+- Long Answer: Tests deeper understanding, analysis, and synthesis.
+- Numerical: Tests application of formulas and problem-solving skills.
+
+5. Cognitive Load
+Avoid overloading a single question with multiple unrelated concepts. Each question should have a focused cognitive demand aligned with the intended Bloom's level.
+
+6. Avoiding Bias
+Questions should be free from cultural, gender, or socioeconomic bias. Use neutral contexts and avoid assumptions about students' backgrounds.
+
+7. Difficulty Distribution
+A balanced exam typically follows:
+- 30% Easy questions (confidence building)
+- 50% Medium questions (core assessment)
+- 20% Hard questions (differentiation)

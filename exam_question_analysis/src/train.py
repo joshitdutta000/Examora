@@ -50,7 +50,6 @@ def define_models():
             max_iter=1000,
             C=0.5,                   # lighter regularisation
             solver="lbfgs",
-            multi_class="multinomial",
             class_weight="balanced",
             random_state=RANDOM_STATE,
         ),

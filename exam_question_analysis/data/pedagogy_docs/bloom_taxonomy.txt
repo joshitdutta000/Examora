@@ -1,0 +1,18 @@
+Bloom's Taxonomy of Educational Objectives
+
+Bloom's Taxonomy classifies learning objectives into six cognitive levels:
+
+1. Remember: Recall facts and basic concepts. Keywords: define, list, recall, recognize, repeat.
+2. Understand: Explain ideas or concepts. Keywords: classify, describe, explain, summarize, interpret.
+3. Apply: Use information in new situations. Keywords: solve, use, demonstrate, calculate, execute.
+4. Analyze: Draw connections among ideas. Keywords: differentiate, compare, contrast, examine, break down.
+5. Evaluate: Justify a decision or course of action. Keywords: argue, defend, judge, critique, assess.
+6. Create: Produce new or original work. Keywords: design, construct, develop, formulate, compose.
+
+Difficulty Alignment:
+- Remember/Understand → typically Easy questions
+- Apply/Analyze → typically Medium questions
+- Evaluate/Create → typically Hard questions
+
+Assessment Design Tip:
+A well-balanced exam should include questions from all six levels, with a distribution that matches the course learning outcomes. Over-reliance on Remember/Understand questions leads to surface-level learning.

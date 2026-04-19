@@ -1,0 +1,46 @@
+Guidelines for Assessing and Improving Question Difficulty
+
+1. What Makes a Question Easy?
+- Tests recall or basic understanding (Bloom's Level 1-2)
+- Uses straightforward language with no ambiguity
+- Has a high average student score (avg_score > 7)
+- Low standard deviation (std_dev < 1) — most students score similarly
+- High discrimination index indicates even easy questions can differentiate
+
+2. What Makes a Question Medium?
+- Tests application or analysis (Bloom's Level 3-4)
+- Requires students to use knowledge in a new context
+- Average student score between 4-7
+- Moderate standard deviation (std_dev 1-2)
+- Good discrimination index (> 0.3)
+
+3. What Makes a Question Hard?
+- Tests evaluation or creation (Bloom's Level 5-6)
+- Requires synthesis of multiple concepts
+- Low average student score (avg_score < 4)
+- High standard deviation (std_dev > 2) — performance varies widely
+- May have lower discrimination index if too difficult for most students
+
+4. Improving Easy Questions
+- Raise cognitive level from Remember to Apply or Analyze
+- Add a problem-solving component
+- Introduce a novel context or scenario
+- Combine with another concept to increase complexity
+
+5. Improving Hard Questions
+- Break into sub-questions to scaffold student thinking
+- Provide more context or a worked example before the question
+- Reduce ambiguity in wording
+- Align with specific taught content rather than inference
+
+6. Improving Medium Questions
+- Ensure clear alignment with learning outcomes
+- Check discrimination index — if low, rewrite distractors (for MCQ)
+- Verify the cognitive level matches the intended difficulty
+- Use active voice and precise terminology
+
+7. Learning Gap Indicators
+- High std_dev + low avg_score = concept not understood by most students
+- Low discrimination index = question does not differentiate learners
+- Hard questions on Remember level = likely a wording/clarity issue
+- Easy questions on Evaluate level = question may not be testing intended skill

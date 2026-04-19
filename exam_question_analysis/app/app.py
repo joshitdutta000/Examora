@@ -270,9 +270,9 @@ with st.sidebar:
     st.divider()
 
     page = st.radio(
-        "Navigate",
-        ["🔍  Single Predictor", "📋  Batch Upload", "📊  Model Dashboard"],
-        label_visibility="collapsed",
+    "Navigate",
+    ["🔍  Single Predictor", "📋  Batch Upload", "📊  Model Dashboard", "🤖  Agent Assistant"],
+    label_visibility="collapsed",
     )
 
     st.divider()
@@ -582,7 +582,7 @@ elif "Batch" in page:
                     mime="text/csv",
                 )
 
-else:
+elif "Dashboard" in page:
     st.markdown("""
     <div style='margin-bottom:1.8rem;'>
         <div class='section-label'>Analytics</div>
@@ -716,3 +716,111 @@ else:
     </div>
     """, unsafe_allow_html=True)
 
+
+# ── Agent Assistant Page ──────────────────────────────────────────
+elif "Agent" in page:
+    from src.agent.graph import run_agent
+
+    st.markdown("""
+    <div style='margin-bottom:1.5rem;'>
+        <h1 style='font-size:2rem;font-weight:800;background:linear-gradient(90deg,#818cf8,#c084fc);
+                   -webkit-background-clip:text;-webkit-text-fill-color:transparent;margin:0;'>
+            🤖 Agent Assessment Assistant
+        </h1>
+        <p style='color:#64748b;margin-top:0.4rem;'>
+            AI-powered analysis with pedagogy-backed recommendations
+        </p>
+    </div>
+    """, unsafe_allow_html=True)
+
+    with st.form("agent_form"):
+        st.markdown("### 📝 Question Details")
+        col1, col2 = st.columns(2)
+        with col1:
+            q_text     = st.text_area("Question Text", height=120, placeholder="Enter exam question here...")
+            subject    = st.selectbox("Subject", SUBJECTS)
+            topic      = st.text_input("Topic", value="Algebra")
+        with col2:
+            q_type     = st.selectbox("Question Type", Q_TYPES)
+            cog_level  = st.selectbox("Cognitive Level", COG_LEVELS)
+            avg_score  = st.slider("Avg Score (0–10)", 0.0, 10.0, 6.0, 0.1)
+            std_dev    = st.slider("Std Deviation (0–3)", 0.0, 3.0, 1.0, 0.05)
+            disc_index = st.slider("Discrimination Index (-1 to 1)", -1.0, 1.0, 0.3, 0.01)
+
+        submitted = st.form_submit_button("🚀 Run Agent Analysis", use_container_width=True)
+
+    if submitted:
+        if not q_text.strip():
+            st.error("Please enter a question.")
+        else:
+            with st.spinner("🤖 Agent is analyzing your question..."):
+                try:
+                    result = run_agent({
+                        "question_text": q_text,
+                        "subject": subject,
+                        "topic": topic,
+                        "question_type": q_type,
+                        "cognitive_level": cog_level,
+                        "avg_score": avg_score,
+                        "std_dev": std_dev,
+                        "discrimination_index": disc_index,
+                        "predicted_difficulty": None,
+                        "confidence": None,
+                        "retrieved_context": None,
+                        "reasoning": None,
+                        "learning_gaps": None,
+                        "recommendations": None,
+                        "disclaimer": None,
+                        "final_report": None,
+                    })
+
+                    # Difficulty badge
+                    diff = result.get("predicted_difficulty", "N/A")
+                    conf = result.get("confidence", 0)
+                    badge_color = {"Easy": "#22c55e", "Medium": "#f59e0b", "Hard": "#ef4444"}.get(diff, "#818cf8")
+                    st.markdown(f"""
+                    <div style='background:rgba(255,255,255,0.03);border:1.5px solid {badge_color}55;
+                                border-radius:14px;padding:1.2rem 1.6rem;margin:1rem 0;
+                                display:flex;align-items:center;gap:1.2rem;'>
+                        <div style='font-size:2.5rem;'>🎯</div>
+                        <div>
+                            <div style='color:#94a3b8;font-size:0.85rem;font-weight:600;'>PREDICTED DIFFICULTY</div>
+                            <div style='color:{badge_color};font-size:2rem;font-weight:800;'>{diff}</div>
+                            <div style='color:#64748b;font-size:0.85rem;'>Confidence: <b style='color:{badge_color};'>{conf}%</b></div>
+                        </div>
+                    </div>
+                    """, unsafe_allow_html=True)
+
+                    # Report sections
+                    tab1, tab2, tab3 = st.tabs(["🧠 Reasoning", "📚 Learning Gaps", "💡 Recommendations"])
+
+                    with tab1:
+                        st.markdown(result.get("reasoning", ""))
+
+                    with tab2:
+                        st.markdown(result.get("learning_gaps", ""))
+
+                    with tab3:
+                        st.markdown(result.get("recommendations", ""))
+
+                    # Download report
+                    st.divider()
+                    st.download_button(
+                        label="📥 Download Full Report",
+                        data=result.get("final_report", ""),
+                        file_name="examora_report.md",
+                        mime="text/markdown",
+                        use_container_width=True,
+                    )
+
+                    # Disclaimer
+                    st.markdown(f"""
+                    <div style='background:rgba(251,191,36,0.06);border:1px solid rgba(251,191,36,0.2);
+                                border-radius:10px;padding:0.8rem 1.2rem;margin-top:1rem;
+                                color:#fbbf24;font-size:0.82rem;'>
+                        {result.get("disclaimer", "")}
+                    </div>
+                    """, unsafe_allow_html=True)
+
+                except Exception as e:
+                    st.error(f"Agent error: {e}")
